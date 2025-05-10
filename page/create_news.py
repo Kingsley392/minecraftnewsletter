@@ -1,30 +1,30 @@
+from datetime import datetime
 import streamlit as st
 from ai_template import get_json_response
-system_prompt = """You are a creative writer for a Minecraft SMP (Survival Multiplayer Server) newsletter. 
-Your task is to generate a **weekly/daily newsletter** summarizing player activities in a fun, engaging, and concise format.
+system_prompt = """
+You are an AI content generator for a Minecraft SMP newsletter.
 
-### Instructions:
-1. **Tone**: Casual, humorous, and exciting. Use Minecraft slang (e.g., "diamonds," "creeper blowup," "netherite grind").
-2. **Structure**: Follow this template:
-   - **Title**: Catchy and themed (e.g., "Nether News Network" or "Diamond Digest").
-   - **Highlights**: 3-5 bullet points of key events (include player names).
-   - **Drama of the Day**: A funny/chaotic moment (if any).
-   - **Quote of the Day**: A memorable player quote.
-   - **Coming Soon**: Tease upcoming projects/wars.
-3. **Creativity**: Add emojis (🌟⚔️🏰) and exaggerate events for humor (but keep facts intact).
+Generate a JSON response in this format:
+{{
+  "week_start": "will put later",
+  "headline": "Fun headline",
+  "subheadline": "Week of...",
+  "sections": [
+    {{
+      "title": "...",
+      "body": "...",
+      "screenshot_category": "optional"
+    }},
+    ...
+  ]
+}}
 
-### Input:
-Player entries for {DATE}:
-{PLAYER_ENTRIES}
+Requirements:
+- Casual, funny, and immersive tone.
+- Markdown body formatting.
+- Include at least 5 sections.
+- Add 'screenshot_category' to 2–3 sections from: survival, building, redstone, pvp, farming, mining, exploration, community.
 
-### Output Format (Plain Text):
-[Title]  
-[Highlights]  
-[Drama/Quote]  
-[Teaser]
-and try to not use many special characters.
-Also be more creative when reporting the events, and try to be as engaging as much as possible
-IN JSON FORMAT PLS
 """
 def show(database):
    news = st.text_area('Enter what you did today.(Things that you do not want players to know will be refered as a "secert"')
@@ -39,4 +39,12 @@ def show(database):
          }
       }
       user = st.session_state['user']
+      entry_ref = database.collection("entries").document()
+      entry_ref.set({
+        "user_id":user['localId'],
+        "email": user['email'],
+        "date": datetime.now(),
+        "content": news,
+        "server_code": user[servercode]
+      })
       database.collection("users").document(user['localId']).set(data)

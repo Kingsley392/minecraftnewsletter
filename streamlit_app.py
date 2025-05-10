@@ -9,7 +9,7 @@ firebase = pyrebase.initialize_app(firebaseConfig)
 auth = firebase.auth()
 
 if not firebase_admin._apps:
-    cred = credentials.Certificate("minecraft-newsletter-firebase-adminsdk-fbsvc-1960b1509e.json")
+    cred = credentials.Certificate("minecraft-newsletter-firebase-adminsdk-fbsvc-2c3ad50e90.json")
     firebase_admin.initialize_app(cred)
 database = firestore.client()
 
