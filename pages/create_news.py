@@ -45,6 +45,5 @@ def show(database):
         "email": user['email'],
         "date": datetime.now(),
         "content": news,
-        "server_code": user[servercode]
       })
       database.collection("users").document(user['localId']).set(data)
