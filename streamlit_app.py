@@ -6,7 +6,7 @@ auth_instance, database_instance = initialize_firebase()
 
 # --- Authentication Logic ---
 if not auth.is_authenticated():
-    st.title("Welcome to AI Schedule Helper!")
+    st.title("Welcome to the minecraft newsletter!")
     st.info("Please login or sign up to continue.")
     auth.show_login_signup_form()
 else:
