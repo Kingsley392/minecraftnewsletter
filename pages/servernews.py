@@ -1,7 +1,8 @@
 import streamlit as st
 from datetime import datetime
 import pytz
-
+from firebase_utils import initialize_firebase
+auth, database = initialize_firebase()
 
 def show(database):
     """Display the weekly SMP newsletter in a classic newspaper layout."""
@@ -99,3 +100,5 @@ def show(database):
         body = section.get("body", "")
         st.markdown(f'<div class="section-title">{title}</div>', unsafe_allow_html=True)
         st.markdown(f'<div class="article">{body}</div>', unsafe_allow_html=True)
+
+show(database)

@@ -1,8 +1,5 @@
 import streamlit as st
 import auth
-from firebase_utils import initialize_firebase
-
-auth_instance, database_instance = initialize_firebase()
 
 
 def show():

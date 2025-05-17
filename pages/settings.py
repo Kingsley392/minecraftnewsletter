@@ -1,6 +1,7 @@
 from datetime import datetime
 import streamlit as st
-
+from firebase_utils import initialize_firebase
+auth, database = initialize_firebase()
 def show(database):
     st.subheader("Welcome!")
     user = st.session_state['user']

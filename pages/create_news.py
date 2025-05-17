@@ -1,6 +1,8 @@
 from datetime import datetime
 import streamlit as st
 from ai_template import get_json_response
+from firebase_utils import initialize_firebase
+auth, database = initialize_firebase()
 system_prompt = """
 You are an AI content generator for a Minecraft SMP newsletter.
 
