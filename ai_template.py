@@ -2,9 +2,11 @@ import json
 from openai import OpenAI
 import streamlit as st
 #api_key = st.secrets["openai_api_key"]["api_key"]
-client = OpenAI(
-    api_key = )
 
+api_key = st.secrets["api_key"]
+client = OpenAI (
+    api_key = api_key
+)
 def get_standard_response(system_prompt, user_prompt):
     """
     Sends a prompt to the ChatGPT API where it will return a standard response.
