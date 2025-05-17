@@ -15,3 +15,8 @@ else:
     st.sidebar.write(f"Welcome, {st.session_state.get('username', 'User')}!")
     if st.sidebar.button("Logout"):
         auth.logout()
+
+st.title("The SMP Newsletter App")
+st.write("This app is supposed to help unite your server together through a serverwide newsletter. Users can input thier " \
+"own shenanigans in the app, and it would create a newsletter with everyone's shennanigans. This app is supposed to be" \
+"used for small servers with friends. Not meant for server giants. ")
