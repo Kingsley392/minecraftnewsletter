@@ -49,3 +49,4 @@ def show(database):
         "content": news,
       })
       database.collection("users").document(user['localId']).set(data)
+show()
